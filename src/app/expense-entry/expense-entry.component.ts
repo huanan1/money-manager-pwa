@@ -30,7 +30,6 @@ export class ExpenseEntryComponent {
     expenses.push(expense.toJSON());
     localStorage.setItem(this.EXPENSES_KEY, JSON.stringify(expenses));
 
-    console.log('Expense submitted:', this.selectedDate, this.expenseDescription, this.currentInput);
     this.currentInput = '';
     this.router.navigate(['']);
   }
@@ -56,7 +55,6 @@ export class ExpenseEntryComponent {
     } else {
       this.currentInput += value; // Append the clicked button value
     }
-    console.log(this.currentInput);
 
   }
 

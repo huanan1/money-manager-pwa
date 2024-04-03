@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Expense } from '../models/expense';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-home',
@@ -10,12 +11,14 @@ import { Expense } from '../models/expense';
 export class HomeComponent implements OnInit {
 
   expenses: Expense[] = [];
-  displayedColumns: string[] = ["date", "description", "amount"];
+  displayedColumns: string[] = ["date", "description", "amount", "delete"];
+  dataSource!: MatTableDataSource<Expense>;
 
   constructor(private router: Router) { }
 
   ngOnInit(): void {
     this.fetchExpensesFromLocalStorage();
+    this.dataSource = new MatTableDataSource(this.expenses);
   }
 
   fetchExpensesFromLocalStorage(): void {
@@ -29,5 +32,17 @@ export class HomeComponent implements OnInit {
 
   addEntry() {
     this.router.navigate(['/expenses-entry']);
+  }
+
+  deleteExpense(expense: Expense) {
+    // Find the index of the expense in the expenses array
+    const index = this.expenses.indexOf(expense);
+    if (index !== -1) {
+      // Remove the expense from the expenses array
+      this.expenses.splice(index, 1);
+      localStorage.setItem('expenses', JSON.stringify(this.expenses));
+      // Update the MatTableDataSource with the modified expenses array
+      this.dataSource.data = this.expenses;
+    }
   }
 }
