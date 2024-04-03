@@ -1,0 +1,26 @@
+.floating-btn {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    z-index: 1000; /* Ensure the button stays above other content */
+}
+
+.floating-btn button {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    background-color: #2a5781; /* Customize button color */
+    color: #fff; /* Text color */
+    font-size: 30px; /* Changes fa-icon size */
+    border: none;
+    cursor: pointer;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); /* Add shadow effect */
+}
+
+.floating-btn button:hover {
+    background-color: #0056b3; /* Change color on hover */
+}
+
+table {
+    margin-top: 2%;
+}

@@ -1,0 +1,60 @@
+.calculator {
+    display: none; // Use flexbox layout
+
+    @media only screen and (max-width: 767px) and (min-height: 500px) {
+        position: absolute;
+        bottom: 20px;
+        display: flex;
+
+        flex-direction: column; // Arrange buttons vertically
+        width: 90vw; // Ensure the calculator spans the full width of its container
+        right: 5vw; // to make container center
+
+        .row {
+            flex: 1; // Distribute remaining space evenly among rows
+            display: flex; // Use flexbox layout for rows
+            justify-content: space-around; // Distribute buttons evenly along the main axis (horizontally)
+            align-items: center; // Align buttons vertically within each row
+        }
+
+        button {
+            flex: 1; // Make buttons flex items and distribute space evenly within each row
+            // Add additional button styles as needed
+            border-radius: 0; // Remove border radius
+            background-color: transparent;
+            height: 5vh;
+            font-size: 16px;
+        }
+
+        .highlight {
+            background-color: #ffd43b;
+        }
+    }
+}
+
+.input-field {
+    margin: 0;
+    padding: 0;
+
+    input {
+        position: relative;
+        box-sizing: border-box;
+        width: 90vw;
+        left: 3vw;
+        height: 60px;
+        padding: 15px;
+        margin-top: 15px;
+        font-size: 16px;
+    }
+}
+
+mat-form-field {
+    position: relative;
+    left: 3vw;
+    width: 90vw;
+    margin-top: 15px;
+
+    // mat-datepicker-toggle {
+    //     color: #ffd43b;
+    // }
+}

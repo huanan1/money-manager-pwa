@@ -1,0 +1,47 @@
+<div class="expense-entry">
+    <div class="input-field">
+        <input type="text" [(ngModel)]="expenseDescription" placeholder="Description">
+    </div>
+    <div class="input-field">
+        <input type="text" [(ngModel)]="currentInput" placeholder="Amount" (click)="showCalculator()">
+    </div>
+
+    <div class="input-field">
+        <mat-form-field appearance="fill">
+            <mat-label>Date</mat-label>
+            <input matInput [matDatepicker]="picker" [(ngModel)]="selectedDate" placeholder="Choose a date">
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+    </div>
+
+
+    <div class="calculator">
+        <div class="row">
+            <button (click)="handleButtonClick('7')">7</button>
+            <button (click)="handleButtonClick('8')">8</button>
+            <button (click)="handleButtonClick('9')">9</button>
+            <button class="control" (click)="handleButtonClick('+')">+</button>
+        </div>
+        <div class="row">
+            <button (click)="handleButtonClick('4')">4</button>
+            <button (click)="handleButtonClick('5')">5</button>
+            <button (click)="handleButtonClick('6')">6</button>
+            <button class="control" (click)="handleButtonClick('-')">-</button>
+        </div>
+        <div class="row">
+            <button (click)="handleButtonClick('1')">1</button>
+            <button (click)="handleButtonClick('2')">2</button>
+            <button (click)="handleButtonClick('3')">3</button>
+            <button class="control" (click)="handleButtonClick('=')">=</button>
+        </div>
+        <div class="row">
+            <button (click)="handleButtonClick('.')">.</button>
+            <button (click)="handleButtonClick('0')">0</button>
+            <button (click)="handleButtonClick('d')"><i class="fa-solid fa-delete-left"
+                    style="color: #2a5781;"></i></button>
+            <button class="highlight" (click)="submitExpense()"><i class="fa-solid fa-check"></i></button>
+        </div>
+
+    </div>
+</div>
