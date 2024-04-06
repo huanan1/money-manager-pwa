@@ -1,5 +1,9 @@
 <div class="expense-entry">
     <div class="input-field">
+        <button class="inflow" [class.inactive]="activeBtn === OUTFLOW" (click)="toggleBtn(INFLOW)">Inflow</button>
+        <button class="outflow" [class.inactive]="activeBtn === INFLOW" (click)="toggleBtn('outflow')">Outflow</button>
+    </div>
+    <div class="input-field">
         <input type="text" [(ngModel)]="expenseDescription" placeholder="Description">
     </div>
     <div class="input-field">
@@ -36,7 +40,7 @@
             <button class="control" (click)="handleButtonClick('=')">=</button>
         </div>
         <div class="row">
-            <button (click)="handleButtonClick('.')">.</button>
+            <button style="font-weight: 800;" (click)="handleButtonClick('.')">.</button>
             <button (click)="handleButtonClick('0')">0</button>
             <button (click)="handleButtonClick('d')"><i class="fa-solid fa-delete-left"
                     style="color: #2a5781;"></i></button>

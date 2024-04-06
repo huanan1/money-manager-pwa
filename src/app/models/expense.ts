@@ -2,7 +2,7 @@ export class Expense {
     constructor(
         public date: Date,
         public description: string,
-        public amount: string
+        public amount: number
     ) { }
 
     // Method to convert Expense object to JSON

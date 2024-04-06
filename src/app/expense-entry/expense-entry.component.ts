@@ -12,9 +12,13 @@ export class ExpenseEntryComponent {
   expenseDescription: string = '';
   currentInput: string = '';
   displayCalculator: boolean = false;
+  INFLOW = "inflow";
+  OUTFLOW = "outflow";
+  activeBtn: string = this.INFLOW;
   selectedDate: Date = new Date();
   @ViewChild('picker') picker!: MatDatepicker<Date>;
   EXPENSES_KEY = "expenses";
+
 
   constructor(private router: Router) { }
 
@@ -25,7 +29,11 @@ export class ExpenseEntryComponent {
     let valid = this.verifyFields();
     if (!valid) return;
 
-    const expense = new Expense(this.selectedDate, this.expenseDescription, this.currentInput);
+    let amount = parseFloat(this.currentInput);
+    if (this.activeBtn === this.OUTFLOW) {
+      amount = -1 * amount;
+    }
+    const expense = new Expense(this.selectedDate, this.expenseDescription, amount);
     let expenses: string[] = JSON.parse(localStorage.getItem(this.EXPENSES_KEY) || "[]");
     expenses.push(expense.toJSON());
     localStorage.setItem(this.EXPENSES_KEY, JSON.stringify(expenses));
@@ -73,5 +81,13 @@ export class ExpenseEntryComponent {
 
     this.currentInput = eval(this.currentInput); // Evaluate the expression
     return true;
+  }
+
+  toggleBtn(btn: string) {
+    if (this.activeBtn === btn) {
+      // already active
+      return;
+    }
+    this.activeBtn = btn; // Set active button
   }
 }
