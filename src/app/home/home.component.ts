@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Expense } from '../models/expense';
 import { MatTableDataSource } from '@angular/material/table';
+import { FormControl } from '@angular/forms';
+import { MatDatepicker } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-home',
@@ -13,6 +15,8 @@ export class HomeComponent implements OnInit {
   expenses: Expense[] = [];
   displayedColumns: string[] = ["date", "description", "amount", "delete"];
   dataSource!: MatTableDataSource<Expense>;
+
+  date = new FormControl(new Date());
 
   constructor(private router: Router) { }
 
@@ -44,5 +48,13 @@ export class HomeComponent implements OnInit {
       // Update the MatTableDataSource with the modified expenses array
       this.dataSource.data = this.expenses;
     }
+  }
+
+  setMonthAndYear(event: any, datepicker: MatDatepicker<Date>) {
+    const selectedDate = event.value;
+    if (selectedDate) {
+      this.date.setValue(selectedDate);
+    }
+    datepicker.close();
   }
 }
