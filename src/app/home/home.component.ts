@@ -38,7 +38,15 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/expenses-entry']);
   }
 
+  confirmDialog(prompt: string) {
+    const confirm = window.confirm(prompt);
+    return confirm;
+  }
+
   deleteExpense(expense: Expense) {
+    const confirm = this.confirmDialog("Are you sure you want to delete this item?");
+    if (!confirm) return;
+
     // Find the index of the expense in the expenses array
     const index = this.expenses.indexOf(expense);
     if (index !== -1) {
