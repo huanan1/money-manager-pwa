@@ -13,6 +13,7 @@ import { MatSort } from '@angular/material/sort';
 export class HomeComponent implements OnInit {
 
   expenses: Expense[] = [];
+  filteredExpenses: Expense[] = [];
   displayedColumns: string[] = ["date", "description", "amount", "delete"];
   dataSource!: MatTableDataSource<Expense>;
 
@@ -35,7 +36,17 @@ export class HomeComponent implements OnInit {
       const { date, description, amount } = JSON.parse(expenseJSON);
       return new Expense(new Date(date), description, amount);
     });
+  }
 
+  updateMonthSelection(selectedMonth: number): void {
+    console.log(this.expenses);
+    console.log("selectedMonth=" + selectedMonth);
+    this.filteredExpenses = this.expenses.filter(expense => {
+      console.log(expense.date.getMonth());
+      expense.date.getMonth() == selectedMonth;
+    })
+    console.log(this.filteredExpenses);
+    this.dataSource.data = this.filteredExpenses;
   }
 
   addEntry() {

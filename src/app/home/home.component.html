@@ -1,4 +1,4 @@
-<app-navbar [isHomePage]="true"></app-navbar>
+<app-navbar [isHomePage]="true" (monthSelected)="updateMonthSelection($event)"></app-navbar>
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
 
     <ng-container matColumnDef="date">

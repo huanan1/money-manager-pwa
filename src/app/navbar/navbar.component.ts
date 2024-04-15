@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDatepicker } from '@angular/material/datepicker';
 import { Router } from '@angular/router';
@@ -25,7 +25,7 @@ export const MMMYYYY = {
 })
 export class NavbarComponent {
   @Input() isHomePage: boolean = true;
-  @Input() showMonthSelectionIcon: boolean = false;
+  @Output() monthSelected = new EventEmitter<number>();
 
   constructor(private router: Router) { }
 
@@ -40,6 +40,7 @@ export class NavbarComponent {
     ctrlValue.month(normalizedMonthAndYear.month());
     ctrlValue.year(normalizedMonthAndYear.year());
     this.date.setValue(ctrlValue);
+    this.monthSelected.emit(normalizedMonthAndYear.month());
     datepicker.close();
   }
 }
