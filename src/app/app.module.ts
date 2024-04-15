@@ -14,6 +14,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MMMYYYY, NavbarComponent } from './navbar/navbar.component';
 import { MAT_MOMENT_DATE_ADAPTER_OPTIONS, MomentDateAdapter } from '@angular/material-moment-adapter';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { MAT_MOMENT_DATE_ADAPTER_OPTIONS, MomentDateAdapter } from '@angular/mat
     MatNativeDateModule,
     MatInputModule,
     MatTableModule,
+    MatSortModule
   ],
   providers: [
     MatDatepickerModule, MatNativeDateModule,

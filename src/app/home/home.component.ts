@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Expense } from '../models/expense';
 import { MatTableDataSource } from '@angular/material/table';
-
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-home',
@@ -16,10 +16,14 @@ export class HomeComponent implements OnInit {
   displayedColumns: string[] = ["date", "description", "amount", "delete"];
   dataSource!: MatTableDataSource<Expense>;
 
-
-
   constructor(private router: Router) { }
 
+  @ViewChild(MatSort)
+  sort!: MatSort;
+
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
+  }
   ngOnInit(): void {
     this.fetchExpensesFromLocalStorage();
     this.dataSource = new MatTableDataSource(this.expenses);
