@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDatepicker } from '@angular/material/datepicker';
 import { Router } from '@angular/router';
@@ -23,13 +23,17 @@ export const MMMYYYY = {
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
   @Input() isHomePage: boolean = true;
   @Output() monthSelected = new EventEmitter<number>();
+  date = new FormControl(moment());
 
   constructor(private router: Router) { }
 
-  date = new FormControl(moment());
+  ngOnInit(): void {
+    this.monthSelected.emit(this.date.value?.month());
+  }
+
 
   goBack(): void {
     this.router.navigate([""])

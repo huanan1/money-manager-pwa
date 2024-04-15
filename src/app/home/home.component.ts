@@ -16,6 +16,9 @@ export class HomeComponent implements OnInit {
   filteredExpenses: Expense[] = [];
   displayedColumns: string[] = ["date", "description", "amount", "delete"];
   dataSource!: MatTableDataSource<Expense>;
+  inflow: number = 0;
+  outflow: number = 0;
+  balance: number = 0;
 
   constructor(private router: Router) { }
 
@@ -25,6 +28,7 @@ export class HomeComponent implements OnInit {
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
   }
+
   ngOnInit(): void {
     this.fetchExpensesFromLocalStorage();
     this.dataSource = new MatTableDataSource(this.expenses);
@@ -39,9 +43,21 @@ export class HomeComponent implements OnInit {
   }
 
   updateMonthSelection(selectedMonth: number): void {
+    this.inflow = 0;
+    this.outflow = 0;
+    this.balance = 0;
+
     this.filteredExpenses = this.expenses.filter(expense => {
-      expense.date.getMonth() == selectedMonth;
+      if (expense.date.getMonth() == selectedMonth) {
+        if (expense.amount > 0) this.inflow += expense.amount;
+        else {
+          this.outflow += expense.amount;
+        }
+        return true;
+      }
+      return false;
     })
+    this.balance = this.inflow + this.outflow;
     this.dataSource.data = this.filteredExpenses;
   }
 

@@ -1,4 +1,21 @@
 <app-navbar [isHomePage]="true" (monthSelected)="updateMonthSelection($event)"></app-navbar>
+
+<div class="balance-container">
+    <div class="balance-item">
+        <span class="label">Income:</span>
+        <span class="value" id="incomeValue">{{ inflow }}</span>
+    </div>
+    <div class="balance-item">
+        <span class="label">Expenses:</span>
+        <span class="value" id="expensesValue">{{ outflow }}</span>
+    </div>
+    <div class="balance-item">
+        <span class="label">Total Balance:</span>
+        <span class="value" id="totalBalance">{{ balance }}</span>
+    </div>
+</div>
+
+
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
 
     <ng-container matColumnDef="date">

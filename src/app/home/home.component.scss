@@ -32,3 +32,28 @@ table {
     border: none;
     font-size: 16px;
 }
+
+.balance-container {
+    display: flex;
+    justify-content: space-around;
+    background-color: #f0f0f0;
+    padding: 20px;
+    margin: 20px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+}
+
+.balance-item {
+    text-align: center;
+}
+
+.label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.value {
+    font-size: 18px;
+    color: #333;
+}
