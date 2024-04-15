@@ -39,13 +39,9 @@ export class HomeComponent implements OnInit {
   }
 
   updateMonthSelection(selectedMonth: number): void {
-    console.log(this.expenses);
-    console.log("selectedMonth=" + selectedMonth);
     this.filteredExpenses = this.expenses.filter(expense => {
-      console.log(expense.date.getMonth());
       expense.date.getMonth() == selectedMonth;
     })
-    console.log(this.filteredExpenses);
     this.dataSource.data = this.filteredExpenses;
   }
 
