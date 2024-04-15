@@ -3,11 +3,8 @@
         <button class="inflow" [class.inactive]="activeBtn === OUTFLOW" (click)="toggleBtn(INFLOW)">Inflow</button>
         <button class="outflow" [class.inactive]="activeBtn === INFLOW" (click)="toggleBtn('outflow')">Outflow</button>
     </div>
+
     <div class="input-field">
-        <input type="text" [(ngModel)]="expenseDescription" placeholder="Description">
-    </div>
-    <div class="input-field">
-        <input type="text" [(ngModel)]="currentInput" placeholder="Amount" readonly>
     </div>
 
     <div class="input-field">
@@ -21,6 +18,10 @@
 
 
     <div class="calculator">
+        <div class="input-field">
+            <input class="description" type="text" [(ngModel)]="expenseDescription" placeholder="Description">
+            <input class="amount" type="text" [(ngModel)]="currentInput" placeholder="Amount" readonly>
+        </div>
         <div class="row">
             <button (click)="handleButtonClick('7')">7</button>
             <button (click)="handleButtonClick('8')">8</button>
