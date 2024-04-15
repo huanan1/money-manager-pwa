@@ -9,10 +9,11 @@ import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatNativeDateModule } from '@angular/material/core';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
-import { NavbarComponent } from './navbar/navbar.component';
+import { MMMYYYY, NavbarComponent } from './navbar/navbar.component';
+import { MAT_MOMENT_DATE_ADAPTER_OPTIONS, MomentDateAdapter } from '@angular/material-moment-adapter';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,15 @@ import { NavbarComponent } from './navbar/navbar.component';
     MatInputModule,
     MatTableModule,
   ],
-  providers: [MatDatepickerModule, MatNativeDateModule],
+  providers: [
+    MatDatepickerModule, MatNativeDateModule,
+    {
+      provide: DateAdapter,
+      useClass: MomentDateAdapter,
+      deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS]
+    },
+    { provide: MAT_DATE_FORMATS, useValue: MMMYYYY }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

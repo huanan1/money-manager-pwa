@@ -1,12 +1,4 @@
-<mat-form-field>
-    <mat-label>Month and Year</mat-label>
-    <input matInput [matDatepicker]="dp" [formControl]="date">
-    <mat-datepicker-toggle matIconSuffix [for]="dp"></mat-datepicker-toggle>
-    <mat-datepicker #dp startView="year" (monthSelected)="setMonthAndYear($event, dp)"
-        panelClass="example-month-picker">
-    </mat-datepicker>
-</mat-form-field>
-
+<app-navbar [isHomePage]="true"></app-navbar>
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
     <ng-container matColumnDef="date">

@@ -1,3 +1,4 @@
+<app-navbar [isHomePage]="false"></app-navbar>
 <div class="expense-entry">
     <div class="input-field">
         <button class="inflow" [class.inactive]="activeBtn === OUTFLOW" (click)="toggleBtn(INFLOW)">Inflow</button>
@@ -12,7 +13,7 @@
             <mat-label>Date</mat-label>
             <input matInput [matDatepicker]="picker" [(ngModel)]="selectedDate" placeholder="Choose a date">
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
+            <mat-datepicker touchUi #picker></mat-datepicker>
         </mat-form-field>
     </div>
 
