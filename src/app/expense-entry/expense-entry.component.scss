@@ -17,14 +17,29 @@
         flex: 1; // Make buttons flex items and distribute space evenly within each row
         // Add additional button styles as needed
         border-radius: 0; // Remove border radius
-        background-color: transparent;
+        background-color: white;
         height: 60px;
         font-size: 16px;
         border: 1px solid black;
+        transition: background-color 0.1s ease-in-out;
+
+        /* Hover effect */
+        &:hover:not(.highlight) {
+            background-color: #e7e6e0;
+        }
+
+        /* Press effect */
+        &:active:not(.highlight) {
+            background-color: #bdb690;
+        }
     }
 
     .highlight {
         background-color: #ffd43b;
+
+        &:active {
+            background-color: #facb21;
+        }
     }
 
     .description {
