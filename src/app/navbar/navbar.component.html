@@ -5,7 +5,7 @@
     </div>
 
     <div *ngIf="isHomePage" class="month-picker">
-        <mat-form-field>
+        <mat-form-field appMonthyear>
             <mat-label>Month and Year</mat-label>
             <input matInput [matDatepicker]="dp" [formControl]="date">
             <mat-datepicker-toggle matIconSuffix [for]="dp"></mat-datepicker-toggle>

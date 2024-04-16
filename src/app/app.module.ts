@@ -9,12 +9,13 @@ import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
-import { MMMYYYY, NavbarComponent } from './navbar/navbar.component';
-import { MAT_MOMENT_DATE_ADAPTER_OPTIONS, MomentDateAdapter } from '@angular/material-moment-adapter';
+import { NavbarComponent } from './navbar/navbar.component';
 import { MatSortModule } from '@angular/material/sort';
+import { MonthyearDirective } from './monthyear.directive';
+import { FulldateDirective } from './fulldate.directive';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,8 @@ import { MatSortModule } from '@angular/material/sort';
     ExpenseEntryComponent,
     HomeComponent,
     NavbarComponent,
+    MonthyearDirective,
+    FulldateDirective,
   ],
   imports: [
     BrowserModule,
@@ -38,12 +41,6 @@ import { MatSortModule } from '@angular/material/sort';
   ],
   providers: [
     MatDatepickerModule, MatNativeDateModule,
-    {
-      provide: DateAdapter,
-      useClass: MomentDateAdapter,
-      deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS]
-    },
-    { provide: MAT_DATE_FORMATS, useValue: MMMYYYY }
   ],
   bootstrap: [AppComponent]
 })

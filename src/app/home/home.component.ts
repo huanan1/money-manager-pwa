@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit {
   inflow: number = 0;
   outflow: number = 0;
   balance: number = 0;
+  selectedMonth = new Date().getMonth();
 
   constructor(private router: Router) { }
 
@@ -43,6 +44,7 @@ export class HomeComponent implements OnInit {
   }
 
   updateMonthSelection(selectedMonth: number): void {
+    this.selectedMonth = selectedMonth;
     this.inflow = 0;
     this.outflow = 0;
     this.balance = 0;
@@ -80,6 +82,8 @@ export class HomeComponent implements OnInit {
       // Remove the expense from the expenses array
       this.expenses.splice(index, 1);
       localStorage.setItem('expenses', JSON.stringify(this.expenses));
+      // Update display
+      this.updateMonthSelection(this.selectedMonth);
       // Update the MatTableDataSource with the modified expenses array
       this.dataSource.data = this.expenses;
     }
