@@ -20,6 +20,7 @@ export class HomeComponent implements OnInit {
   outflow: number = 0;
   balance: number = 0;
   selectedMonth = new Date().getMonth();
+  selectedYear = new Date().getFullYear();
 
   constructor(private router: Router) { }
 
@@ -33,6 +34,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.fetchExpensesFromLocalStorage();
     this.dataSource = new MatTableDataSource(this.expenses);
+    this.filterExpenses();
   }
 
   fetchExpensesFromLocalStorage(): void {
@@ -45,12 +47,22 @@ export class HomeComponent implements OnInit {
 
   updateMonthSelection(selectedMonth: number): void {
     this.selectedMonth = selectedMonth;
+    this.filterExpenses();
+  }
+
+  updateDateSelection(dateEvent: { month: number, year: number }): void {
+    this.selectedMonth = dateEvent.month;
+    this.selectedYear = dateEvent.year;
+    this.filterExpenses();
+  }
+
+  filterExpenses(): void {
     this.inflow = 0;
     this.outflow = 0;
     this.balance = 0;
 
     this.filteredExpenses = this.expenses.filter(expense => {
-      if (expense.date.getMonth() == selectedMonth) {
+      if (expense.date.getMonth() === this.selectedMonth && expense.date.getFullYear() === this.selectedYear) {
         if (expense.amount > 0) this.inflow += expense.amount;
         else {
           this.outflow += expense.amount;

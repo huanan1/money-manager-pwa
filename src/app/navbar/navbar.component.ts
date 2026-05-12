@@ -14,6 +14,7 @@ import { Moment } from 'moment';
 export class NavbarComponent {
   @Input() isHomePage: boolean = true;
   @Output() monthSelected = new EventEmitter<number>();
+  @Output() dateSelected = new EventEmitter<{ month: number, year: number }>();
   date = new FormControl(moment());
 
   constructor(private router: Router) { }
@@ -29,6 +30,7 @@ export class NavbarComponent {
     ctrlValue.year(normalizedMonthAndYear.year());
     this.date.setValue(ctrlValue);
     this.monthSelected.emit(normalizedMonthAndYear.month());
+    this.dateSelected.emit({ month: normalizedMonthAndYear.month(), year: normalizedMonthAndYear.year() });
     datepicker.close();
   }
 }

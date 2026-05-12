@@ -1,4 +1,5 @@
-<app-navbar [isHomePage]="true" (monthSelected)="updateMonthSelection($event)"></app-navbar>
+<app-navbar [isHomePage]="true" (monthSelected)="updateMonthSelection($event)"
+    (dateSelected)="updateDateSelection($event)"></app-navbar>
 
 <div class="balance-container">
     <div class="balance-item">
